@@ -23,9 +23,9 @@ const PlayerComponent = () => {
                             </div>
                         </Col>
                     )}
-                    <Col lg={selectedSong ? 7 : 10} className="offset-lg-2">
+                    <Col lg={4}>
                         <Row className="h-100 flex-column justify-content-center align-items-center">
-                            <Col xs={6} md={4} className="playerControls">
+                            <Col xs={4} md={8} className="playerControls">
                                 <div className="icons-player">
                                     <a href="#" className="d-flex align-items-center">
                                         <img src={shuffleIcon} alt="shuffle" />
