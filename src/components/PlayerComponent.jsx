@@ -23,7 +23,7 @@ const PlayerComponent = () => {
                             </div>
                         </Col>
                     )}
-                    <Col lg={4}>
+                    <Col lg={selectedSong ? 4 : 6} className={selectedSong ? '' : 'offset-lg-4'}>
                         <Row className="h-100 flex-column justify-content-center align-items-center">
                             <Col xs={4} md={8} className="playerControls">
                                 <div className="icons-player">

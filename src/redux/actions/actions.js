@@ -38,17 +38,3 @@ export const setSelectedSong = (song) => {
         payload: song
     }
 }
-
-//azione per preferiti
-export const addToFavourites = (song) => {
-    return {
-        type: ADD_TO_FAVOURITES,
-        payload: song
-    }
-}
-
-//azione per rimuovere dai preferit
-export const removeFromFavourite = (song) => ({
-    type: REMOVE_FROM_FAVOURITE,
-    payload: song,
-});

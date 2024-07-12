@@ -1,12 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import searchReducer from '../reducers/searchReducer';
 import selectedSongReducer from '../reducers/selectedSongReducer';
-
-
+import favouriteReducer from '../reducers/favouriteReducer';
 
 const rootReducer = combineReducers({
     search: searchReducer,
-    selectedSong: selectedSongReducer
+    selectedSong: selectedSongReducer,
+    favourites: favouriteReducer
 });
 
 const store = configureStore({
