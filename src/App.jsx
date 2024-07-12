@@ -4,7 +4,6 @@ import './App.css'
 import MainComponent from './components/MainComponent';
 import MySidebar from './components/MySidebar'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PlayerComponent from './components/PlayerComponent';
 import { Provider } from 'react-redux';
 import store from './redux/store/store';
 

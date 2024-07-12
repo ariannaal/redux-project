@@ -86,6 +86,10 @@ ul {
   border: 1px solid rgb(60, 211, 60);
 }
 
+.last-row {
+  padding-bottom: 80px;
+}
+
 
 .login-btn {
   background-color: black;

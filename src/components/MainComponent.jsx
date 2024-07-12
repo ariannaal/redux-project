@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedSong } from '../redux/actions/actions';
+import { setSelectedSong, addToFavourites, removeFromFavourite } from '../redux/actions/actions';
 import PlayerComponent from './PlayerComponent';
+import { HeartFill, Heart } from 'react-bootstrap-icons';
+
 
 const MainComponent = () => {
     const [rockSongs, setRockSongs] = useState([]);
@@ -11,8 +13,11 @@ const MainComponent = () => {
     const [hiphopSongs, setHiphopSongs] = useState([]);
     const searchResults = useSelector(state => state.search.searchResults);
     const dispatch = useDispatch();
+    const favourites = useSelector(state => state.favourites.favourites);
+
 
     const artists = ["queen", "katyperry", "eminem"];
+
 
     useEffect(() => {
         const fetchSongs = (artistName, setSongs) => {
@@ -45,9 +50,21 @@ const MainComponent = () => {
     }, []);
 
     const handleSongClick = (song) => {
-        dispatch(setSelectedSong(song))
+        setSelectedSong(song);
+        dispatch(setSelectedSong(song));
     };
 
+    const isFavourite = (song) => {
+        return favourites.some(fav => fav.id === song.id); // se almeno un elemento nell'array favourites esiste
+    };
+
+    const handleFavouriteClick = (song) => {
+        if (isFavourite(song)) {
+            dispatch(removeFromFavourite(song));
+        } else {
+            dispatch(addToFavourites(song));
+        }
+    };
 
     return (
 
@@ -66,10 +83,27 @@ const MainComponent = () => {
                 <div className="col-12">
                     <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                         {searchResults.map(song => (
-                            <Col key={song.id} className="text-center" onClick={() => handleSongClick(song)}>
-                                <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
+                            <Col key={song.id} className="text-center" >
+                                <img className="img-fluid" src={song.album.cover_medium} alt="song cover" onClick={() => handleSongClick(song)} />
                                 <p>
                                     Track: {song.title}
+                                    {isFavourite(song) ? (
+                                        <HeartFill
+                                            color="green"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    ) : (
+                                        <Heart
+                                            color="grey"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    )}
                                     <br />
                                     Artist: {song.artist.name}
                                 </p>
@@ -84,10 +118,27 @@ const MainComponent = () => {
                     <h2>Rock Classics</h2>
                     <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                         {rockSongs.map(song => (
-                            <Col key={song.id} className="text-center" onClick={() => handleSongClick(song)}>
-                                <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
+                            <Col key={song.id} className="text-center" >
+                                <img className="img-fluid" src={song.album.cover_medium} alt="song cover" onClick={() => handleSongClick(song)} />
                                 <p>
                                     Track: {song.title}
+                                    {isFavourite(song) ? (
+                                        <HeartFill
+                                            color="green"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    ) : (
+                                        <Heart
+                                            color="grey"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    )}
                                     <br />
                                     Artist: {song.artist.name}
                                 </p>
@@ -102,13 +153,33 @@ const MainComponent = () => {
                     <h2>Pop Culture</h2>
                     <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                         {popSongs.map(song => (
-                            <Col key={song.id} className="text-center" onClick={() => handleSongClick(song)}>
-                                <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
+                            <Col key={song.id} className="text-center" >
+                                <img className="img-fluid" src={song.album.cover_medium} alt="song cover" onClick={() => handleSongClick(song)} />
                                 <p>
                                     Track: {song.title}
+                                    {isFavourite(song) ? (
+                                        <HeartFill
+                                            color="green"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    ) : (
+                                        <Heart
+                                            color="grey"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    )}
                                     <br />
                                     Artist: {song.artist.name}
                                 </p>
+
+
+
                             </Col>
                         ))}
                     </Row>
@@ -116,7 +187,7 @@ const MainComponent = () => {
             </div>
 
             <div className="row">
-                <div className="col-12">
+                <div className="col-12 last-row">
                     <h2>#HipHop</h2>
                     <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                         {hiphopSongs.map(song => (
@@ -124,9 +195,28 @@ const MainComponent = () => {
                                 <img className="img-fluid" src={song.album.cover_medium} alt="song cover" />
                                 <p>
                                     Track: {song.title}
+                                    {isFavourite(song) ? (
+                                        <HeartFill
+                                            color="green"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    ) : (
+                                        <Heart
+                                            color="grey"
+                                            size={16}
+                                            className="ms-2"
+                                            onClick={() => handleFavouriteClick(song)}
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    )}
                                     <br />
                                     Artist: {song.artist.name}
                                 </p>
+
+
                             </Col>
                         ))}
                     </Row>
