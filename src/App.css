@@ -17,12 +17,14 @@ body {
   flex-flow: column nowrap;
   align-items: flex-start;
   background-color: black;
-  z-index: 1200;
+
 }
 
 .aside-bar {
   height: 100vh;
   position: fixed;
+  left: 0;
+  z-index: 1200;
 }
 
 .signup-button:hover {
@@ -91,6 +93,14 @@ ul {
   margin-bottom: 20px;
 }
 
+.link-top {
+  margin-top: 20px;
+}
+
+.link-top:hover {
+  color: white;
+}
+
 .login-btn:hover {
   color: black;
   background-color: white;
@@ -108,6 +118,8 @@ ul {
   height: 5.5rem;
   background-color: #282828;
 }
+
+
 
 .playerControls div {
   justify-content: space-between;
@@ -131,8 +143,14 @@ ul {
 
 .progress {
   color: white;
-  background-color: #414141;
-  height: 3px;
+  background-color: #414141 !important;
+  height: 3px !important;
+}
+
+
+
+.icons-player {
+  display: flex !important;
 }
 
 @media screen and (min-width: 1200px) {
