@@ -1,8 +1,24 @@
 
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useDispatch } from 'react-redux';
+import { searchSongs } from '../redux/actions/actions';
+import { useState } from 'react';
 
 const MySidebar = () => {
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const dispatch = useDispatch();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        dispatch(searchSongs(searchQuery));
+    }
+
+    const handleSubmit = (event) => {
+        setSearchQuery(event.target.value);
+    }
+
     return (
         <Navbar bg="black" variant="dark" expand="md" className="flex-md-column p-3 aside-bar align-items-start">
             <Navbar.Brand href="/">
@@ -26,14 +42,16 @@ const MySidebar = () => {
                         Your Library
                     </Nav.Link>
                     <li className="nav-item mt-4">
-                        <Form className="input-group">
+                        <Form className="input-group" onSubmit={handleSearch}>
                             <FormControl
                                 type="text"
                                 placeholder="Search"
                                 aria-label="Search"
                                 className="form-control"
+                                value={searchQuery}
+                                onChange={handleSubmit}
                             />
-                            <Button variant="outline-light" type="button">
+                            <Button variant="outline-light" type="submit">
                                 GO
                             </Button>
                         </Form>

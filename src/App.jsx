@@ -5,23 +5,27 @@ import MainComponent from './components/MainComponent';
 import MySidebar from './components/MySidebar'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PlayerComponent from './components/PlayerComponent';
+import { Provider } from 'react-redux';
+import store from './redux/store/store';
 
 function App() {
 
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Col md={2} className="p-0">
-            <MySidebar />
-          </Col>
-          <Col md={8} className="p-0">
-            <MainComponent />
-            <PlayerComponent />
-          </Col>
-        </Row>
+      <Provider store={store}>
+        <Container fluid>
+          <Row>
+            <Col md={2} className="p-0">
+              <MySidebar />
+            </Col>
+            <Col md={8} className="p-0">
+              <MainComponent />
+              <PlayerComponent />
+            </Col>
+          </Row>
 
-      </Container>
+        </Container>
+      </Provider>
     </>
   )
 }
