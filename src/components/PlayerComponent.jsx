@@ -15,15 +15,15 @@ const PlayerComponent = () => {
             <Container fluid>
                 <Row className="h-100 align-items-center d-flex">
                     {selectedSong && (
-                        <Col lg={5} className="offset-lg-2 d-flex align-items-center justify-content-end song-player">
-                            <img src={selectedSong.album.cover_small} alt="selected song cover" className="img-fluid rounded" style={{ maxWidth: '100px' }} />
+                        <Col lg={3} className="offset-lg-2 d-flex align-items-center justify-content-end song-player">
+                            <img src={selectedSong.album.cover_small} alt="selected song cover" className="img-fluid rounded" style={{ maxWidth: '80px' }} />
                             <div className="ml-3">
                                 <p className="mb-0 text-white player-song">{selectedSong.title}</p>
                                 <p className="mb-0 text-white player-song">{selectedSong.artist.name}</p>
                             </div>
                         </Col>
                     )}
-                    <Col lg={10} className="offset-lg-2">
+                    <Col lg={selectedSong ? 7 : 10} className="offset-lg-2">
                         <Row className="h-100 flex-column justify-content-center align-items-center">
                             <Col xs={6} md={4} className="playerControls">
                                 <div className="icons-player">
