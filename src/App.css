@@ -21,9 +21,11 @@ body {
 }
 
 .aside-bar {
-  height: 100vh;
   position: fixed;
+  top: 0;
   left: 0;
+  bottom: 0;
+  height: 100vh;
   z-index: 1200;
 }
 
@@ -123,7 +125,10 @@ h2 {
   background-color: #282828;
 }
 
-
+.player-song {
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
 
 .playerControls div {
   justify-content: space-between;
@@ -145,12 +150,17 @@ h2 {
   color: #282828 !important;
 }
 
+
 .progress {
   color: white;
   background-color: #414141 !important;
   height: 3px !important;
 }
 
+/* .song-player {
+  margin-left: 15rem;
+  margin-bottom: 5rem !important;
+} */
 
 
 .icons-player {

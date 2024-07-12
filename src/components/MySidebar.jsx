@@ -6,7 +6,6 @@ import { searchSongs } from '../redux/actions/actions';
 import { useState } from 'react';
 
 const MySidebar = () => {
-
     const [searchQuery, setSearchQuery] = useState('');
     const dispatch = useDispatch();
 

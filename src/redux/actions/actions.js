@@ -1,5 +1,8 @@
 export const SEARCH_SONGS = "SEARCH_SONGS";
 export const GET_SEARCH_RESULTS = "GET_SEARCH_RESULTS";
+export const SET_SELECTED_SONG = "SET_SELECTED_SONG";
+export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES";
+export const REMOVE_FROM_FAVOURITE = "REMOVE_FROM_FAVOURITE";
 
 export const searchSongs = (query) => {
     return async (dispatch) => {
@@ -26,3 +29,26 @@ export const getSearchResults = (results) => {
         payload: results
     };
 };
+
+
+// azione per mostrare canzone nel player
+export const setSelectedSong = (song) => {
+    return {
+        type: SET_SELECTED_SONG,
+        payload: song
+    }
+}
+
+//azione per preferiti
+export const addToFavourites = (song) => {
+    return {
+        type: ADD_TO_FAVOURITES,
+        payload: song
+    }
+}
+
+//azione per rimuovere dai preferit
+export const removeFromFavourite = (song) => ({
+    type: REMOVE_FROM_FAVOURITE,
+    payload: song,
+});

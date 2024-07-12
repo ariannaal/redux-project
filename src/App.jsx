@@ -20,7 +20,7 @@ function App() {
             </Col>
             <Col md={8} className="p-0">
               <MainComponent />
-              <PlayerComponent />
+
             </Col>
           </Row>
 

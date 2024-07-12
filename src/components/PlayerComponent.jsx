@@ -5,12 +5,24 @@ import prevIcon from '../../public/assets/playerbuttons/prev.png';
 import playIcon from '../../public/assets/playerbuttons/play.png';
 import nextIcon from '../../public/assets/playerbuttons/next.png';
 import repeatIcon from '../../public/assets/playerbuttons/repeat.png';
+import { useSelector } from 'react-redux';
 
 const PlayerComponent = () => {
+    const selectedSong = useSelector(state => state.selectedSong.selectedSong);
+
     return (
         <div className="container-fluid fixed-bottom bg-container pt-1">
             <Container fluid>
-                <Row className="h-100">
+                <Row className="h-100 align-items-center d-flex">
+                    {selectedSong && (
+                        <Col lg={5} className="offset-lg-2 d-flex align-items-center justify-content-end song-player">
+                            <img src={selectedSong.album.cover_small} alt="selected song cover" className="img-fluid rounded" style={{ maxWidth: '100px' }} />
+                            <div className="ml-3">
+                                <p className="mb-0 text-white player-song">{selectedSong.title}</p>
+                                <p className="mb-0 text-white player-song">{selectedSong.artist.name}</p>
+                            </div>
+                        </Col>
+                    )}
                     <Col lg={10} className="offset-lg-2">
                         <Row className="h-100 flex-column justify-content-center align-items-center">
                             <Col xs={6} md={4} className="playerControls">
